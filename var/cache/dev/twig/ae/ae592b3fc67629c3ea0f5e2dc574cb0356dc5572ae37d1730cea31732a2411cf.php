@@ -417,6 +417,6 @@ class __TwigTemplate_7a35c228d9bb93c86644478682fe6c2daa2ab636c829cf79c13b1e62d1f
     });
 })();
 </script>
-", "@WebProfiler/Profiler/settings.html.twig", "C:\\Users\\PHOTIADE\\musee_du_louvre\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\settings.html.twig");
+", "@WebProfiler/Profiler/settings.html.twig", "C:\\Users\\PHOTIADE\\museedulouvre\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\settings.html.twig");
     }
 }

@@ -340,7 +340,7 @@ class __TwigTemplate_d8896597de7b56b97ed2c81262f5acbf9dbd73cb1edca8cd1f28be11905
                 // line 118
                 if (( !twig_get_attribute($this->env, $this->source, (isset($context["collector"]) || array_key_exists("collector", $context) ? $context["collector"] : (function () { throw new RuntimeError('Variable "collector" does not exist.', 118, $this->source); })()), "authenticated", [], "any", false, false, false, 118) && twig_test_empty(twig_get_attribute($this->env, $this->source, (isset($context["collector"]) || array_key_exists("collector", $context) ? $context["collector"] : (function () { throw new RuntimeError('Variable "collector" does not exist.', 118, $this->source); })()), "roles", [], "any", false, false, false, 118)))) {
                     // line 119
-                    echo "                                <p class=\"help\">User is not authenticated probably because they have no roles.</p>
+                    echo "                                <p class=\"help\">Visitor is not authenticated probably because they have no roles.</p>
                             ";
                 }
                 // line 121
@@ -1035,7 +1035,7 @@ $context["voter_detail"], "vote", [], "array", false, false, false, 353) == twig
                             {{ collector.roles is empty ? 'none' : profiler_dump(collector.roles, maxDepth=1) }}
 
                             {% if not collector.authenticated and collector.roles is empty %}
-                                <p class=\"help\">User is not authenticated probably because they have no roles.</p>
+                                <p class=\"help\">Visitor is not authenticated probably because they have no roles.</p>
                             {% endif %}
                         </td>
                     </tr>
@@ -1289,6 +1289,6 @@ $context["voter_detail"], "vote", [], "array", false, false, false, 353) == twig
         </table>
     {% endif %}
 {% endblock %}
-", "@Security/Collector/security.html.twig", "C:\\Users\\PHOTIADE\\musee_du_louvre\\vendor\\symfony\\security-bundle\\Resources\\views\\Collector\\security.html.twig");
+", "@Security/Collector/security.html.twig", "C:\\Users\\PHOTIADE\\museedulouvre\\vendor\\symfony\\security-bundle\\Resources\\views\\Collector\\security.html.twig");
     }
 }

@@ -11,6 +11,7 @@
 
 namespace Symfony\Flex;
 
+use Composer\Command\GlobalCommand;
 use Composer\Composer;
 use Composer\Console\Application;
 use Composer\DependencyResolver\Operation\InstallOperation;
@@ -118,12 +119,11 @@ class Flex implements PluginInterface, EventSubscriberInterface
             $manager->repositoryClasses = $this->repositoryClasses;
             $manager->setRepositoryClass('composer', TruncatedComposerRepository::class);
             $manager->repositories = $this->repositories;
-            $versions = $downloader->getVersions();
             $i = 0;
             foreach (RepositoryFactory::defaultRepos(null, $this->config, $manager) as $repo) {
                 $manager->repositories[$i++] = $repo;
                 if ($repo instanceof TruncatedComposerRepository && $symfonyRequire) {
-                    $repo->setSymfonyRequire($symfonyRequire, $versions, $this->io);
+                    $repo->setSymfonyRequire($symfonyRequire, $downloader, $this->io);
                 }
             }
             $manager->setLocalRepository($this->getLocalRepository());
@@ -258,7 +258,10 @@ class Flex implements PluginInterface, EventSubscriberInterface
             if (isset($trace['object']) && $trace['object'] instanceof Installer) {
                 $this->installer = \Closure::bind(function () { return $this->update ? $this : null; }, $trace['object'], $trace['object'])();
                 $trace['object']->setSuggestedPackagesReporter(new SuggestedPackagesReporter(new NullIO()));
-                break;
+            }
+
+            if (isset($trace['object']) && $trace['object'] instanceof GlobalCommand) {
+                $this->downloader->disable();
             }
         }
 
@@ -700,8 +703,8 @@ class Flex implements PluginInterface, EventSubscriberInterface
                 $package = $operation->getPackage();
             }
 
-            // FIXME: getNames() can return n names
-            $name = $package->getNames()[0];
+            // FIXME: Multi name with getNames()
+            $name = $package->getName();
             $job = $operation->getJobType();
 
             if (!empty($manifests[$name]['manifest']['conflict']) && !$operation instanceof UninstallOperation) {
@@ -807,8 +810,8 @@ class Flex implements PluginInterface, EventSubscriberInterface
             }
         }
 
-        // FIXME: getNames() can return n names
-        $name = $package->getNames()[0];
+        // FIXME: Multi name with getNames()
+        $name = $package->getName();
         if ($operation instanceof InstallOperation) {
             if (!$this->lock->has($name)) {
                 return true;

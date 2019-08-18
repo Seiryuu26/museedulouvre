@@ -482,6 +482,6 @@ class __TwigTemplate_f762773e23f5983bbcf5afa653f57a1d14b764f157e510151de3d719ac4
         {% endfor %}
     </table>
 {% endmacro %}
-", "@WebProfiler/Collector/events.html.twig", "C:\\Users\\PHOTIADE\\musee_du_louvre\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Collector\\events.html.twig");
+", "@WebProfiler/Collector/events.html.twig", "C:\\Users\\PHOTIADE\\museedulouvre\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Collector\\events.html.twig");
     }
 }
